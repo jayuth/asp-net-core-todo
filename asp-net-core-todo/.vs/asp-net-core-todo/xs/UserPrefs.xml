@@ -1,13 +1,13 @@
 ﻿<Properties StartupConfiguration="{84FDFC59-353F-4C33-B0C0-ACC12FC2B63D}|Default">
   <MonoDevelop.Ide.ItemProperties.asp-net-core-todo PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Shared/_Layout.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Todo/AddItemPartial.cshtml">
     <Files>
-      <File FileName="Controllers/TodoController.cs" Line="26" Column="15" />
+      <File FileName="Services/TodoItemService.cs" Line="11" Column="6" />
       <File FileName="Services/ITodoItemService.cs" Line="10" Column="6" />
-      <File FileName="Services/FakeTodoItemService.cs" Line="1" Column="1" />
-      <File FileName="Models/TodoItem.cs" Line="11" Column="25" />
-      <File FileName="Startup.cs" Line="32" Column="14" />
-      <File FileName="Views/Shared/_Layout.cshtml" Line="1" Column="1" />
+      <File FileName="Data/ApplicationDbContext.cs" Line="1" Column="1" />
+      <File FileName="Services/FakeTodoItemService.cs" Line="24" Column="10" />
+      <File FileName="Controllers/TodoController.cs" Line="11" Column="37" />
+      <File FileName="Views/Todo/AddItemPartial.cshtml" Line="6" Column="17" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,10 +16,9 @@
             <Node name="asp-net-core-todo" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="Services" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="Shared" expanded="True">
-                  <Node name="_Layout.cshtml" selected="True" />
+                <Node name="Todo" expanded="True">
+                  <Node name="AddItemPartial.cshtml" selected="True" />
                 </Node>
               </Node>
             </Node>

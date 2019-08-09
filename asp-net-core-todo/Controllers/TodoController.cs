@@ -20,6 +20,7 @@ namespace asp_net_core_todo.Controllers
         {
             var items = await _todoItemService.GetIncompleteItemsAsync();
 
+            // bind a list of items returned from GetIncompleteItemsAsync() method to TodoViewModel() 
             var model = new TodoViewModel()
             {
                 Items = items
