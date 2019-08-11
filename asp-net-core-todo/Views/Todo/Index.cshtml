@@ -30,6 +30,7 @@
         <table />
 
         <div class="panel-footer add-item-form">
+            @* return an object typed TodoItem back to the TodoContoller. This object will include only a Title property*@
             @await Html.PartialAsync("AddItemPartial", new TodoItem())
         </div>
 </div>

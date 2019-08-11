@@ -1,26 +1,24 @@
 ﻿<Properties StartupConfiguration="{84FDFC59-353F-4C33-B0C0-ACC12FC2B63D}|Default">
   <MonoDevelop.Ide.ItemProperties.asp-net-core-todo PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Todo/AddItemPartial.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/TodoController.cs">
     <Files>
-      <File FileName="Services/TodoItemService.cs" Line="11" Column="6" />
-      <File FileName="Services/ITodoItemService.cs" Line="10" Column="6" />
+      <File FileName="Services/TodoItemService.cs" Line="42" Column="10" />
+      <File FileName="Services/ITodoItemService.cs" Line="14" Column="1" />
+      <File FileName="Controllers/TodoController.cs" Line="54" Column="4" />
+      <File FileName="Services/FakeTodoItemService.cs" Line="29" Column="1" />
+      <File FileName="Views/Todo/Index.cshtml" Line="20" Column="43" />
+      <File FileName="Views/Todo/AddItemPartial.cshtml" Line="2" Column="23" />
       <File FileName="Data/ApplicationDbContext.cs" Line="1" Column="1" />
-      <File FileName="Services/FakeTodoItemService.cs" Line="24" Column="10" />
-      <File FileName="Controllers/TodoController.cs" Line="11" Column="37" />
-      <File FileName="Views/Todo/AddItemPartial.cshtml" Line="6" Column="17" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="asp-net-core-todo" expanded="True">
             <Node name="asp-net-core-todo" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Models" expanded="True" />
-              <Node name="Views" expanded="True">
-                <Node name="Todo" expanded="True">
-                  <Node name="AddItemPartial.cshtml" selected="True" />
-                </Node>
+              <Node name="Controllers" expanded="True">
+                <Node name="TodoController.cs" selected="True" />
               </Node>
+              <Node name="Data" expanded="True" />
             </Node>
           </Node>
         </State>

@@ -4,6 +4,7 @@ using asp_net_core_todo.Models;
 
 namespace asp_net_core_todo.Services
 {
+    /*
     public class FakeTodoItemService : ITodoItemService
     {
         public Task<TodoItem[]> GetIncompleteItemsAsync()
@@ -23,4 +24,5 @@ namespace asp_net_core_todo.Services
             return Task.FromResult(new[] { item1, item2});
         }
     }
+    */
 }

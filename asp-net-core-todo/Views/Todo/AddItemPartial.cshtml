@@ -1,7 +1,10 @@
 ﻿@model TodoItem
-
+@* this form will collaborate with the AddItem action in the TodoController*@
 <form asp-action="AddItem" method="POST">
     <label asp-for="Title">Add a new item:</label>
+    @*asp-for="Title" on the input tag let ASP.NET Core know that 
+    this input element is only for the Title property in the TodoItem model.
+    Other properties will be set in the Service layer.*@
     <input asp-for="Title">
     <button type="submit">Add</button>
 </form>

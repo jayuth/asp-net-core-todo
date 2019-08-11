@@ -25,5 +25,20 @@ namespace asp_net_core_todo.Services
                 .ToArrayAsync();
             return items;
         }
+
+        public async Task<bool> AddItemAsync(TodoItem newItem)
+        {
+            // set the rest of the properties for the newItem object
+            // the newItem.Title propery has already been set by ASP.NET Core's model binder
+            newItem.Id = Guid.NewGuid();
+            newItem.IsDone = false;
+            newItem.DueAt = DateTimeOffset.Now.AddDays(3);
+
+            // tell the database to add a new item to Items table
+            _context.Items.Add(newItem);
+
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
+        }
     }
 }

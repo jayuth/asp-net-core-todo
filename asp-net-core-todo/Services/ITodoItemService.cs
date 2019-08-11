@@ -7,5 +7,7 @@ namespace asp_net_core_todo.Services
     public interface ITodoItemService
     {
         Task<TodoItem[]> GetIncompleteItemsAsync();
+
+        Task<bool> AddItemAsync(TodoItem newItem);
     }
 }
