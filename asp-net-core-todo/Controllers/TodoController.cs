@@ -41,7 +41,7 @@ namespace asp_net_core_todo.Controllers
                 return RedirectToAction("Index");
 			}
 
-            // the controller calls into the service to save the new to-do item.
+            // the controller calls into the service layer to save the new to-do item.
             // AddItemAsync method will return true of false value.
             var successful = await _todoItemService.AddItemAsync(newItem);
 
@@ -52,5 +52,26 @@ namespace asp_net_core_todo.Controllers
 
             return RedirectToAction("Index");
 		}
+
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> MarkDone(Guid id)
+        {
+            // when passing a parameter that includes a field call 'id' (from a hidden element in index.), 
+            // there is no need for model and model binding/validation
+            if (id == Guid.Empty)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var successful = await _todoItemService.MarkDoneAsync(id);
+
+            if (!successful)
+            {
+                return BadRequest("Could not mark item as done.");
+            }
+
+            // item that is checked will disappear as the IsDone property of that item is true now.
+            return RedirectToAction("Index");
+        }
 	}
 }
