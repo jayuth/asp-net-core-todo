@@ -17,22 +17,24 @@ namespace asp_net_core_todo.Services
             _context = context;
         }
 
-        public async Task<TodoItem[]> GetIncompleteItemsAsync()
+        public async Task<TodoItem[]> GetIncompleteItemsAsync(ApplicationUser user)
         {
             // access all the to-do items from the Items property in the DbSet Items
             var items = await _context.Items
-                .Where(x => x.IsDone == false)
+                .Where(x => x.IsDone == false && x.UserId == user.Id)
                 .ToArrayAsync();
             return items;
         }
 
-        public async Task<bool> AddItemAsync(TodoItem newItem)
+        public async Task<bool> AddItemAsync(
+            TodoItem newItem, ApplicationUser user)
         {
             // set the rest of the properties for the newItem object
             // the newItem.Title propery has already been set by ASP.NET Core's model binder
             newItem.Id = Guid.NewGuid();
             newItem.IsDone = false;
             newItem.DueAt = DateTimeOffset.Now.AddDays(3);
+            newItem.UserId = user.Id;
 
             // tell the database to add a new item to Items table
             _context.Items.Add(newItem);
@@ -41,10 +43,11 @@ namespace asp_net_core_todo.Services
             return saveResult == 1;
         }
 
-        public async Task<bool> MarkDoneAsync(Guid id)
+        public async Task<bool> MarkDoneAsync(
+            Guid id, ApplicationUser user)
         {
             var item = await _context.Items
-                .Where(x => x.Id == id)
+                .Where(x => x.Id == id && x.UserId == user.Id)
                 // return the item if it exists or null
                 .SingleOrDefaultAsync();
 

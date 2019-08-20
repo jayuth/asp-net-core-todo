@@ -2,24 +2,34 @@
 using System.Threading.Tasks;
 using asp_net_core_todo.Models;
 using asp_net_core_todo.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace asp_net_core_todo.Controllers
 {
+    [Authorize]
     public class TodoController : Controller
     {
 		// set a variable typed ITodoItemService so we can use it in our action methods
 		private readonly ITodoItemService _todoItemService;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-		// constructor to instanitiate a TodoController object that matches the properties in ITodoItemService
-		public TodoController(ITodoItemService todoItemService)
+        // constructor to instanitiate a TodoController object that matches the properties in ITodoItemService
+        public TodoController(ITodoItemService todoItemService,
+            UserManager<ApplicationUser> userManager)
         {
             _todoItemService = todoItemService;
+            _userManager = userManager;
         }
-        // Index action method - display all tasks 
+        // Index action method - display all to-do items 
         public async Task<IActionResult> Index()
         {
-            var items = await _todoItemService.GetIncompleteItemsAsync();
+            // look up the full user details in the database through GetUserAsync() method
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser == null) return Challenge();
+
+            var items = await _todoItemService.GetIncompleteItemsAsync(currentUser);
 
             // bind a list of items returned from GetIncompleteItemsAsync() method to TodoViewModel() 
             var model = new TodoViewModel()
@@ -41,9 +51,12 @@ namespace asp_net_core_todo.Controllers
                 return RedirectToAction("Index");
 			}
 
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser == null) return Challenge();
+
             // the controller calls into the service layer to save the new to-do item.
             // AddItemAsync method will return true of false value.
-            var successful = await _todoItemService.AddItemAsync(newItem);
+            var successful = await _todoItemService.AddItemAsync(newItem, currentUser);
 
             if (!successful)
             {
@@ -63,7 +76,10 @@ namespace asp_net_core_todo.Controllers
                 return RedirectToAction("Index");
             }
 
-            var successful = await _todoItemService.MarkDoneAsync(id);
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser == null) return Challenge();
+
+            var successful = await _todoItemService.MarkDoneAsync(id, currentUser);
 
             if (!successful)
             {

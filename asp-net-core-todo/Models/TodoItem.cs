@@ -5,6 +5,8 @@ namespace asp_net_core_todo.Models
 {
     public class TodoItem
     {
+        public string UserId { get; set; }
+
         // data the database will need to store for each to-do item
         public Guid Id { get; set; }
 

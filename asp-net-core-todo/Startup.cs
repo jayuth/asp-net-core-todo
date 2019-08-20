@@ -13,6 +13,8 @@ using asp_net_core_todo.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using asp_net_core_todo.Services;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using asp_net_core_todo.Models;
 
 namespace asp_net_core_todo
 {
@@ -38,9 +40,11 @@ namespace asp_net_core_todo
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddDefaultIdentity<ApplicationUser>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultUI();
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             //services.AddSingleton<ITodoItemService, FakeTodoItemService>();
